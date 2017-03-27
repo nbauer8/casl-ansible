@@ -1,5 +1,5 @@
 # Nagios Example Run
-
+:)
 The `nagios-target` and `nagios-server` roles can be used to setup a complete Nagios monitoring for any environment. The `nagios-target` role will prepare the targets with the correct monitoring configuratoin for use with the NRPE (Nagios Remote Plugin Executor). The target role will selectively enable the correct monitoring plugins (and correctly configured) per targets.
 
 Below is an example inventory file for setting up the Nagios server and targets. Before executing, ensure that access to the target servers is enabled - i.e.: SSH key login for root. 
