@@ -1,0 +1,5 @@
+---
+- name: Set up SSL for nagios
+  hosts: nagios-servers
+  roles:
+    - role: nagios-ssl

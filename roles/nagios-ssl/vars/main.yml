@@ -1,0 +1,3 @@
+---
+ssl_certificate_key_file: /etc/pki/tls/private/nagios-ssl.key
+ssl_certificate_file: /etc/pki/tls/certs/nagios-ssl.crt

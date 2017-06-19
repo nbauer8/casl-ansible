@@ -1,0 +1,36 @@
+---
+
+- name: Install mod_ssl package
+  yum:
+    name: mod_ssl
+    state: latest
+
+- name: Insert key file in ssl.conf
+  replace:
+    dest: /etc/httpd/conf.d/ssl.conf
+    regexp: "^SSLCertificateKeyFile /etc/pki/tls/private/localhost.key$"
+    replace: "SSLCertificateKeyFile {{ ssl_certificate_key_file }}"
+
+- name: Insert certificate file in ssl.conf
+  replace:
+    dest: /etc/httpd/conf.d/ssl.conf
+    regexp: "^SSLCertificateFile /etc/pki/tls/certs/localhost.crt$"
+    replace: "SSLCertificateFile {{ ssl_certificate_file }}"
+
+- name: Force SSL for nagios
+  replace:
+    dest: /etc/httpd/conf.d/nagios.conf
+    regexp: "^#  SSLRequireSSL$"
+    replace: "   SSLRequireSSL"
+
+- name: Allow https traffic
+  firewalld:
+    service: https
+    state: enabled
+    immediate: true
+    permanent: true
+
+- name: Restart httpd
+  service:
+    name: httpd
+    state: restarted
